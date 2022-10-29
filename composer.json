@@ -1,0 +1,15 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Uni9\\StudyList\\": "./src"
+        }
+    },
+    "require": {
+        "doctrine/orm": "^2.13",
+        "psr/http-message": "^1.0",
+        "nyholm/psr7": "^1.5",
+        "nyholm/psr7-server": "^1.0",
+        "psr/http-server-handler": "^1.0",
+        "symfony/cache": "^6.1"
+    }
+}
