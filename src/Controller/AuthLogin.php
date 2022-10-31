@@ -7,9 +7,12 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Uni9\StudyList\Entity\User;
+use Uni9\StudyList\Helper\FlashMessage;
 
 class AuthLogin implements RequestHandlerInterface
 {
+    use FlashMessage;
+
     private $entityManager;
 
     public function __construct()
@@ -26,7 +29,7 @@ class AuthLogin implements RequestHandlerInterface
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
 
         if (is_null($user) || !$user->verifyPassword($pass)) {
-            $_SESSION['message'] = "E-mail ou senha inválida.";
+            $this->defineMessage('E-mail ou senha inválida.', 'danger');
             return new Response(302, ['Location' => '/login']);
         }
 

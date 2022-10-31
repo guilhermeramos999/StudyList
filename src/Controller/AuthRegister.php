@@ -7,9 +7,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Uni9\StudyList\Entity\User;
+use Uni9\StudyList\Helper\FlashMessage;
 
 class AuthRegister implements RequestHandlerInterface
 {
+    use FlashMessage;
     private $entityManager;
 
     public function __construct()
@@ -19,6 +21,11 @@ class AuthRegister implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        if (!is_null($this->entityManager->getRepository(User::class)->findOneBy(['email' => $request->getParsedBody()['email']]))) {
+            $this->defineMessage('E-mail já cadastrado na aplicação.', 'danger');
+            return new Response(302, ['Location' => '/register']);
+        }
+
         $name = $request->getParsedBody()['name'];
         $email = $request->getParsedBody()['email'];
         $pass = password_hash($request->getParsedBody()['password'], PASSWORD_DEFAULT);
@@ -27,6 +34,8 @@ class AuthRegister implements RequestHandlerInterface
         $this->entityManager->persist($user);
         $this->entityManager->flush();
 
-        return new Response(200, ['Location' => '/login']);
+        $this->defineMessage('Cadastro realizado com sucesso, por gentileza realizar o login.', 'success');
+
+        return new Response(302, ['Location' => '/login']);
     }
 }

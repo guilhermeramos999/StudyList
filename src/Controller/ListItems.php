@@ -26,9 +26,6 @@ class ListItems implements RequestHandlerInterface
         $user = $this->entityManager->find(User::class, $id);
         $itemsRepository = $this->entityManager->getRepository(StudyItem::class)->findBy(['user_id' => $id]);
 
-        // var_dump($itemsRepository);
-        // exit();
-
-        return new Response(200, [], $this->render('study/list.php', ['items' => $itemsRepository, 'user' => $user, 'pageName' => 'DevEasy - Lista de Items']));
+        return new Response(200, [], $this->render('study/list.php', ['items' => $itemsRepository, 'user' => $user, 'pageName' => 'DevEasy - Lista de Itens']));
     }
 }

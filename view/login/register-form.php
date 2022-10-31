@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html>
+<?php require __DIR__ . '/../html-header.php' ?>
 
-<head>
-    <title>Register</title>
-    <meta charset="utf-8">
-</head>
+<form action="/authregister" method="POST">
+    <div class="mb-1 col-sm-5 ms-5">
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" name="name" class="form-control col-form-label" required><br>
+    </div>
+    <div class="mb-1 col-sm-5 ms-5">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" name="email" class="form-control col-form-label" placeholder="name@example.com" required><br>
+    </div>
+    <div class="mb-1 col-sm-5 ms-5">
+        <label for="password" class="form-label">Senha</label>
+        <input type="password" name="password" class="form-control" required><br>
+    </div>
+    <button class="btn btn-primary ms-5 mb-2">Registrar-se</button>
+</form>
 
-<body>
-    <form action="/authregister" method="POST">
-        <label for="email">Nome</label>
-        <input type="text" name="name"><br>
-        <label for="email">E-mail</label>
-        <input type="email" name="email"><br>
-        <label for="password">Senha</label>
-        <input type="password" name="password"><br>
-        <button>Sign Up</button>
-    </form>
-</body>
-
-</html>
+<?php require __DIR__ . '/../html-footer.php';

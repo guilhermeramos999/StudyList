@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Uni9\StudyList\Entity\StudyItem;
+use Uni9\StudyList\Entity\User;
 use Uni9\StudyList\Helper\HtmlRender;
 
 class ViewItem implements RequestHandlerInterface
@@ -22,8 +23,10 @@ class ViewItem implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
+        $user = $this->entityManager->find(User::class, $_SESSION['user_id']);
+
         $item = $this->entityManager->find(StudyItem::class, $request->getQueryParams()['id']);
 
-        return new Response(200, [], $this->render('study/view.php', ['item' => $item]));
+        return new Response(200, [], $this->render('study/view.php', ['item' => $item, 'user' => $user, 'pageName' => 'DevEasy - ' . $item->name]));
     }
 }

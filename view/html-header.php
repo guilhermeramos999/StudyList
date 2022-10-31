@@ -21,5 +21,5 @@
     </nav>
 
     <?php if (isset($_SESSION['message'])) : ?>
-        <p class="alert alert-danger col-sm-5 ms-5"><?= $_SESSION['message'] ?></p>
+        <p class="alert alert-<?= $_SESSION['message_type'] ?> col-sm-5 ms-5"><?= $_SESSION['message'] ?></p>
     <?php endif ?>

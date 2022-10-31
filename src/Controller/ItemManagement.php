@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Uni9\StudyList\Entity\StudyItem;
+use Uni9\StudyList\Entity\User;
 use Uni9\StudyList\Helper\HtmlRender;
 
 class ItemManagement implements RequestHandlerInterface
@@ -25,10 +26,14 @@ class ItemManagement implements RequestHandlerInterface
     {
         if (isset($request->getQueryParams()['id'])) {
             $item = $this->entityManager->find(StudyItem::class, $request->getQueryParams()['id']);
+            $pageName = 'Edição de Item';
         } else {
             $item = null;
+            $pageName = 'Novo Item';
         }
 
-        return new Response(200, [], $this->render('study/form.php', ['item' => $item]));
+        $user = $this->entityManager->find(User::class, $_SESSION['user_id']);
+
+        return new Response(200, [], $this->render('study/form.php', ['item' => $item, 'user' => $user,'pageName' => 'DevEasy - ' . $pageName]));
     }
 }

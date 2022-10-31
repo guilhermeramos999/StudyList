@@ -14,6 +14,6 @@ class RegisterForm implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return new Response(200, [], $this->render('login/register-form.php'));
+        return new Response(200, [], $this->render('login/register-form.php',['pageName' => 'DevEasy - Registrar-se']));
     }
 }

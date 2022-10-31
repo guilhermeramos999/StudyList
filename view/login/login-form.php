@@ -9,11 +9,8 @@
         <label for="password" class="form-label">Senha</label>
         <input type="password" name="password" class="form-control" required><br>
     </div>
-    <button class="btn btn-primary ms-5 mb-2">Sign In</button>
+    <button class="btn btn-primary ms-5 mb-2">Entrar</button>
 </form>
-<a href="/register" class="btn btn-danger ms-5">Sign Up</a>
-</body>
+<a href="/register" class="btn btn-danger ms-5">Registrar-se</a>
 
-
-</html>
-<?php unset($_SESSION['message']) ?>
+<?php require __DIR__ . '/../html-footer.php';
