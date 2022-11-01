@@ -10,13 +10,13 @@
 
 <body>
     <nav class="navbar navbar-dark bg-dark mb-5">
-        <a class="navbar-brand ms-3" href="/list">DevEasy<?= isset($_SESSION['logged']) ? ' - ' . $user->name : '' ?></a>
-        <?php if($_SESSION['logged']): ?>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link me-3" href="/logout">Sair</a>
-            </li>
-        </ul>
+        <a class="navbar-brand ms-3" href="<?= isset($_SESSION['logged']) ? '/list' : '/login' ?>">DevEasy<?= isset($_SESSION['logged']) ? ' - ' . $user->name : '' ?></a>
+        <?php if (isset($_SESSION['logged'])) : ?>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link me-3" href="/logout">Sair</a>
+                </li>
+            </ul>
         <?php endif ?>
     </nav>
 
