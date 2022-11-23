@@ -14,6 +14,6 @@ class LoginForm implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return new Response(200, [], $this->render('login/login-form.php',['pageName' => 'DevEasy - Login']));
+        return new Response(200, [], $this->render('login/login-form.php', ['pageName' => 'DevEasy - Login']));
     }
 }
